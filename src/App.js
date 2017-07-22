@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MyLoadable from './MyLoadable';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
+const LoadableApp = MyLoadable({
+  loader: () => import('./MyApp')
+});
+
+const LoadableOtherApp = MyLoadable({
+  loader: () => import('./MyOtherApp')
+});
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={LoadableApp} />
+          <Route exact path="/other" component={LoadableOtherApp} />
+        </Switch>
+      </BrowserRouter>
     );
   }
 }
