@@ -1,5 +1,5 @@
 [ignore]
-*/*.test.js
+.*/src/.*.test.js
 .*/build/.*
 
 [include]
